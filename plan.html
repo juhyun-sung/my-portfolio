@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>시즌 키 코디 포트폴리오 기획서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 룩북 태그(시즌 코드·스펙 라벨)를 닮은 한 단 문서. 결정 사항은 스펙 시트처럼 라벨/값 줄로 정리 */
+:root {
+  --bg: #f3f3f1;
+  --surface: #ffffff;
+  --fg: #1a1a1d;
+  --muted: #6a6870;
+  --line: #d9d7d4;
+  --accent: #6e2434;
+  --accent-soft: #f1e4e6;
+  --ok: #2f6b45;
+  --display: "Nanum Myeongjo", "Noto Serif KR", serif;
+  --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141416; --surface: #1d1d20; --fg: #ecebe8; --muted: #a09ea6;
+    --line: #34333a; --accent: #d98a99; --accent-soft: #3a2328; --ok: #7cc495;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141416; --surface: #1d1d20; --fg: #ecebe8; --muted: #a09ea6;
+  --line: #34333a; --accent: #d98a99; --accent-soft: #3a2328; --ok: #7cc495;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 16px; line-height: 1.7;
+  word-break: keep-all;
+}
+.wrap {
+  max-width: 760px; margin: 0 auto;
+  padding-block: 48px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 56px;
+}
+.label {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted);
+}
+h1, h2 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.3; }
+h1 { font-size: clamp(30px, 6vw, 44px); font-weight: 800; }
+h2 { font-size: 24px; font-weight: 700; }
+h3 { font-size: 16px; font-weight: 600; margin: 0; }
+p { margin: 0; max-width: 65ch; }
+ul { margin: 0; padding-left: 1.2em; }
+li + li { margin-top: 4px; }
+
+header { display: flex; flex-direction: column; gap: 16px; }
+.tag {
+  align-self: flex-start;
+  font-family: var(--mono); font-size: 13px; font-weight: 500;
+  border: 1px solid var(--fg); padding: 2px 10px; letter-spacing: .06em;
+}
+.lede { font-size: 18px; color: var(--fg); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+
+section { display: flex; flex-direction: column; gap: 20px; }
+.sec-head { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--fg); padding-top: 14px; }
+
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.three > div { background: var(--surface); border: 1px solid var(--line); padding: 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.three strong { font-size: 17px; }
+
+/* 코디 카드 예시 */
+.look { background: var(--surface); border: 1px solid var(--line); display: grid; grid-template-columns: 220px 1fr; }
+.look-photo {
+  background: repeating-linear-gradient(135deg, var(--accent-soft) 0 10px, transparent 10px 20px);
+  border-right: 1px solid var(--line);
+  display: flex; align-items: flex-end; padding: 14px; min-height: 280px;
+}
+.look-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 13px; color: var(--accent); background: var(--accent-soft); padding: 2px 10px; border-radius: 999px; }
+.items { display: grid; grid-template-columns: 6.5em 1fr; gap: 6px 12px; font-size: 14px; }
+.items dt { font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 2px; }
+.items dd { margin: 0; color: var(--muted); }
+.example { font-size: 13px; color: var(--muted); }
+
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; }
+.flow span { border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; }
+.flow i { font-style: normal; color: var(--muted); }
+
+.spec { border-top: 1px solid var(--line); }
+.spec-row { display: grid; grid-template-columns: 9em 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.spec-row dt { font-weight: 600; }
+.spec-row dd { margin: 0; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.done { font-family: var(--mono); font-size: 11px; color: var(--ok); letter-spacing: .06em; }
+.note { color: var(--muted); font-size: 14px; }
+
+ol.steps { margin: 0; padding-left: 1.4em; }
+ol.steps li + li { margin-top: 6px; }
+
+.next { background: var(--surface); border: 1px solid var(--accent); padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+
+@media (max-width: 640px) {
+  .three { grid-template-columns: 1fr; }
+  .look { grid-template-columns: 1fr; }
+  .look-photo { border-right: 0; border-bottom: 1px solid var(--line); min-height: 200px; }
+  .spec-row { grid-template-columns: 1fr; gap: 4px; }
+}
+</style>
+
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="tag">26 FW · PLAN v0.1</span>
+    <h1>시즌 키 코디 포트폴리오 기획서</h1>
+    <p class="lede">시즌(SS / FW)마다 가장 핵심이 되는 코디를 트렌드 키워드와 아이템 구성까지 자세히 보여주고, 같은 패션 분야 동료들과 의견을 나누는 사이트입니다.</p>
+    <div class="meta">
+      <span class="label">작성 2026.10.28</span>
+      <span class="label">상태 · 초안 (결정 사항 확정)</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head"><span class="label">한눈에 보기</span><h2>누가, 무엇을, 그다음엔</h2></div>
+    <div class="three">
+      <div><span class="label">누가 보나</span><strong>같은 패션 분야 동료</strong><p class="note">결과 사진보다 아이템 조합 방식을 꼼꼼히 보고, 시즌별로 비교해 보는 사람들</p></div>
+      <div><span class="label">무엇을 보여주나</span><strong>시즌별 키 코디 3개</strong><p class="note">사진, 트렌드 키워드, 상의부터 액세서리까지 아이템 목록</p></div>
+      <div><span class="label">그다음엔</span><strong>피드백 · 인플루언서 탐색</strong><p class="note">코디에 의견을 남기고, 비슷한 감도의 인플루언서 SNS로 이동</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="label">콘텐츠</span><h2>코디 한 장에 담기는 것</h2></div>
+    <p>코디는 시즌 단위로 묶고, 시즌마다 핵심 코디 3개를 올립니다. 사진이 주인공이라 사진을 크게 보여주고, 아래에 키워드와 아이템을 정리합니다.</p>
+    <div class="look" aria-label="코디 카드 구성 예시">
+      <div class="look-photo"><span class="label">코디 사진 자리</span></div>
+      <div class="look-body">
+        <div><span class="label">26 FW · LOOK 01</span></div>
+        <div class="chips"><span class="chip">#트렌드 키워드</span><span class="chip">#키워드</span><span class="chip">#키워드</span></div>
+        <dl class="items">
+          <dt>OUTER</dt><dd>아우터 · 브랜드 / 색상 / 소재</dd>
+          <dt>TOP</dt><dd>상의 · 브랜드 / 색상 / 소재</dd>
+          <dt>BOTTOM</dt><dd>하의 · 브랜드 / 색상 / 소재</dd>
+          <dt>SHOES</dt><dd>신발</dd>
+          <dt>BAG</dt><dd>가방</dd>
+          <dt>ACC</dt><dd>모자, 주얼리, 벨트, 아이웨어, 스카프 등</dd>
+          <dt>ETC</dt><dd>양말, 이너 등</dd>
+        </dl>
+        <div class="chips"><span class="label">비슷한 감도 · 인플루언서 SNS 1~3개</span></div>
+        <span class="label">피드백 댓글</span>
+      </div>
+    </div>
+    <p class="example">위 카드는 구성 예시입니다. 실제 사진과 아이템은 2026 FW 코디가 정해지면 채웁니다.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="label">페이지 구성</span><h2>네 개의 페이지</h2></div>
+    <div class="flow"><span>메인</span><i>→</i><span>시즌 목록</span><i>→</i><span>코디 상세</span><i>·</i><span>소개 (About)</span></div>
+    <ul>
+      <li><strong>메인</strong>: 사이트 소개 한 줄, 최신 시즌 대표 코디, 시즌 목록으로 이동</li>
+      <li><strong>시즌 목록</strong>: SS / FW 시즌별 정리 (시즌 탭 또는 필터)</li>
+      <li><strong>코디 상세</strong>: 사진, 트렌드 키워드, 아이템 목록, 인플루언서 링크, 피드백 순서</li>
+      <li><strong>소개</strong>: 나에 대한 소개, 인스타그램·스레드 링크</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="label">결정 사항</span><h2>확정된 운영 방식</h2></div>
+    <dl class="spec">
+      <div class="spec-row"><dt>첫 공개 시즌</dt><dd><span class="done">확정</span>2026 FW부터 시작</dd></div>
+      <div class="spec-row"><dt>시즌당 코디</dt><dd><span class="done">확정</span>3개. 핵심만 골라서 올리고, 아이템은 자세히 적습니다.</dd></div>
+      <div class="spec-row"><dt>피드백</dt><dd><span class="done">확정</span>누구나 로그인 없이 댓글을 남길 수 있습니다.<span class="note">광고·장난 댓글은 직접 지울 수 있게 하고, 필요하면 스팸 차단 기능을 붙입니다.</span></dd></div>
+      <div class="spec-row"><dt>내 SNS</dt><dd><span class="done">확정</span>인스타그램, 스레드 링크만 넣습니다. 이메일은 넣지 않습니다.<span class="note">주소는 나중에 채웁니다.</span></dd></div>
+      <div class="spec-row"><dt>인플루언서 링크</dt><dd><span class="done">확정</span>
+        <ol class="steps">
+          <li>2026 FW 코디 3개의 사진과 트렌드 키워드를 정합니다.</li>
+          <li>Claude가 웹 검색으로 코디마다 비슷한 감도의 인플루언서 후보를 찾습니다.</li>
+          <li>후보를 직접 보고 코디마다 1~3명을 골라 확정합니다.</li>
+        </ol>
+      </dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="next">
+      <span class="label">다음 단계</span>
+      <h3>2026 FW 코디 3개 준비하기</h3>
+      <p>코디마다 사진, 트렌드 키워드, 아이템 목록을 준비하면 인플루언서 후보 찾기로 넘어갑니다.</p>
+    </div>
+  </section>
+</div>
+</body>
+</html>
