@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>페이지를 찾을 수 없어요</title>
+  <style>
+    :root {
+      --navy-900: #0b1a33;
+      --navy-800: #12264a;
+      --navy-700: #1b3566;
+      --navy-500: #2f5597;
+      --accent: #c9d6ee;
+      --text: #f4f7fc;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-800) 55%, var(--navy-700) 100%);
+      color: var(--text);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    }
+
+    main {
+      text-align: center;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    .code {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .divider {
+      width: 64px;
+      height: 3px;
+      background: var(--accent);
+      margin: 0 auto 24px;
+      border-radius: 2px;
+    }
+
+    .message {
+      color: var(--accent);
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      margin-bottom: 40px;
+    }
+
+    .home-button {
+      display: inline-block;
+      padding: 12px 32px;
+      border: 1px solid var(--navy-500);
+      border-radius: 999px;
+      background: rgba(47, 85, 151, 0.25);
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .home-button:hover,
+    .home-button:focus-visible {
+      background: var(--navy-500);
+      border-color: var(--accent);
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="code">404</p>
+    <h1>페이지를 찾을 수 없어요</h1>
+    <div class="divider"></div>
+    <p class="message">주소를 다시 확인해 주세요</p>
+    <a class="home-button" href="index.html">홈으로 가기</a>
+  </main>
+</body>
+</html>
